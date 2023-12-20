@@ -3,7 +3,7 @@ import { ConsultationEntity } from "src/consultation/entities/consultation.entit
 import { Column, Entity,   OneToOne,   PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("prescription")
-export class PrescriptiponEntity extends AbsEntity {
+export class PrescriptionEntity extends AbsEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

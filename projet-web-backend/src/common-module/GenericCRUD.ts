@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DeepPartial, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { HasIdInterface } from './id-interface';
 
 @Injectable()
@@ -9,11 +9,11 @@ export class CrudService<Entity extends HasIdInterface> {
     return this.repository.save(entity);
   }
 
-  findAll() {
+  findAll(): Promise<Entity[]> {
     return this.repository.find();
   }
 
-  findOne(id) {
+  findOne(id) : Promise<Entity>{
     return this.repository.findOne({ where: { id } });
   }
 

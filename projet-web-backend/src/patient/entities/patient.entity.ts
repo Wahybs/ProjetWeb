@@ -1,4 +1,3 @@
-
 import { AbsEntity } from "src/common-module/absEntity.entity";
 import { ConsultationEntity } from "src/consultation/entities/consultation.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";

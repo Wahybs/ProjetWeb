@@ -1,12 +1,15 @@
+import { AbsEntity } from "src/common-module/absEntity.entity";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-
+export enum UserRoleEnum {
+    admin = 'admin',
+    medecin = 'medecin',
+    patient= 'patient'
+  }
 @Entity("user")
-export class UserEntity {
+export class UserEntity extends AbsEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
-
-
     @Column({
         type: "varchar"
     })
@@ -21,8 +24,11 @@ export class UserEntity {
         type: "varchar"
     })
     hash: string;
+    @Column({
+        type: 'enum',
+        enum: UserRoleEnum,
+        
+      })
+      role: UserRoleEnum;
 
-
-    //@OneToMany(type => Cv, cv => cv.user, {eager: true})
-   // cvs: Cv[]
 }
