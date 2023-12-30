@@ -5,9 +5,11 @@ import { CreateConsultationDto } from './dto/consultation.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UserEntity } from 'src/user/entities/user.entity';
 import { Request } from 'express';
+import { MedecinAdminGuard } from './guards/medecin-admin.guard';
 import { MedecinGuard } from './guards/medecin.guard';
+import { AdminGuard } from './guards/admin.guard';
 
-
+@UseGuards(JwtAuthGuard)
 @Controller('consultation')
 export class ConsultationController {
     constructor(private readonly consultationService:ConsultationService) {}
@@ -15,25 +17,29 @@ export class ConsultationController {
     async findAll(): Promise<ConsultationEntity[]> {
       return this.consultationService.findAll();
     }
-//modified
+
     @Get()
-    @UseGuards(JwtAuthGuard,MedecinGuard)
+    @UseGuards(MedecinAdminGuard)
     async findAllByMed( @Req() request) {
       const user:UserEntity = request.user; 
       return this.consultationService.findAllByMedecin(user);
     }
     
     @Post()
-    async create(@Body() doctorData: CreateConsultationDto):Promise<ConsultationEntity> {
-      return this.consultationService.create(doctorData);
+    @UseGuards(MedecinGuard)
+    async create(@Body() doctorData: CreateConsultationDto, @Req() request):Promise<ConsultationEntity> {
+      const user:UserEntity = request.user;
+      return this.consultationService.createConsultation(user,doctorData);
     }
 
     @Get('/admin/:id')
+    @UseGuards(AdminGuard)
     async findOne(@Param('id') id: string): Promise<ConsultationEntity> {
       return this.consultationService.findOne(id);
     }
  
     @Delete('/admin/:id')
+    @UseGuards(AdminGuard)
     async delete(@Param('id') id: string): Promise<void> {
        this.consultationService.remove(id);
     }

@@ -1,7 +1,23 @@
-import {  IsDate, IsNotEmpty, IsString } from "class-validator";
+import { Transform } from "class-transformer";
+import { IsDate, IsEmail,  IsNotEmpty, IsString } from "class-validator";
 import { validationMessages } from "src/common-module/error";
 
-export class CreatePatientDto {
+
+export class CreateNewUserDto {
+
+    @IsNotEmpty({
+        message: validationMessages.required('email')
+    })
+     @IsEmail({}, { message: 'Invalid email format' })
+    email: string;
+
+    @IsString({
+        message: validationMessages.IS_STRING('password')
+    })
+    @IsNotEmpty({
+        message: validationMessages.required('password')
+    })
+    password: string;
     @IsString({
         message: validationMessages.IS_STRING('nom')
     })
@@ -23,9 +39,11 @@ export class CreatePatientDto {
         message: validationMessages.required('age')
     })
     age: string;
+
     @IsDate({
         message: validationMessages.IS_DATE('dateDeNaissance')
     })
+    @Transform(({ value }) => new Date(value))
     @IsNotEmpty({
         message: validationMessages.required('dateDeNaissance')
     })
@@ -38,5 +56,7 @@ export class CreatePatientDto {
         message: validationMessages.required('cin')
     })
     cin:string;
-    
+
+
+
 }

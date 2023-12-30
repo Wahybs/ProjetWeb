@@ -20,7 +20,12 @@ export class PatientEntity extends AbsEntity{
         type: "varchar"
     })
     age: string;
-
+    
+    @Column({
+        unique:true
+    })
+     
+    cin: string ;
 
     @Column({
         type: "date"

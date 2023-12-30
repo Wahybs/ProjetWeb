@@ -18,7 +18,7 @@ export class CreateUserDto {
     })
     password: string;
 
-    @IsEnum({})
+    @IsEnum(UserRoleEnum,{})
     @IsNotEmpty({
         message: validationMessages.required('role')
     })
