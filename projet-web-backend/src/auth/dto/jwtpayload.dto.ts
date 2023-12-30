@@ -1,7 +1,7 @@
-import { UserRoleEnum } from '../../user/entities/user.entity';
+import { UserRoleEnum } from "src/user/enum/user-role.enum";
 
 export class JwtPayloadDto {
+  id: string;
   email:string;
- token: string;
   role: UserRoleEnum;
 }

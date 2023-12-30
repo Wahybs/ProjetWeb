@@ -1,17 +1,15 @@
 import { AbsEntity } from "src/common-module/absEntity.entity";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { UserRoleEnum } from "../enum/user-role.enum";
 
-export enum UserRoleEnum {
-    admin = 'admin',
-    medecin = 'medecin',
-    patient= 'patient'
-  }
+
 @Entity("user")
 export class UserEntity extends AbsEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
     @Column({
-        type: "varchar"
+        type: "varchar",
+        unique:true
     })
     email: string;
 
@@ -32,3 +30,5 @@ export class UserEntity extends AbsEntity {
       role: UserRoleEnum;
 
 }
+
+

@@ -2,7 +2,6 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { SigninDto } from './dto/signin.dto';
 import * as bcrypt from 'bcrypt';
-
 import { JwtService } from '@nestjs/jwt';
 import { JwtDto } from './dto/jwt.dto';
 @Injectable()
@@ -26,10 +25,11 @@ export class AuthService {
     /* On envoi le user */
     if (isLoggedIn) {
       const jwtPayload= {
-        token:user.id,
+        id:user.id,
+        email:user.email,
         role: user.role,
       };
-
+      
       return { jwt: this.jwtService.sign(jwtPayload) };
     }
     throw new UnauthorizedException('Veuillez vérifier vos credentials !');

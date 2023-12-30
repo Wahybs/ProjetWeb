@@ -1,24 +1,42 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { JwtPayloadDto } from './../dto/jwtpayload.dto';
 import { UserService } from '../../user/user.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private configService:ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: 'RT4',
+      secretOrKey: configService.get('SECRET'),
     });
   }
 
   async validate(jwtPayloadDto: JwtPayloadDto) {
+    
     const user = await this.userService.findByEmail(
       jwtPayloadDto.email,
     );
-    if (!user) throw new NotFoundException();
+    
+    if (!user)
+    throw new NotFoundException();
 
-    return user;
+    if (user) 
+    {
+      delete user.password;
+      delete user.hash;
+      delete user .createdAt;
+      delete user.deletedAt;
+      delete user.updatedAt;
+    //  const {password,hash,createdAt,updatedAt,deletedAt, ...result}=user;
+     // return result;
+     return user;
+    }
+   else {
+    throw new UnauthorizedException();
+   }
+    
   }
 }

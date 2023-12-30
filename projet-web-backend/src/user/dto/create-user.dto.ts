@@ -1,13 +1,13 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsString } from "class-validator";
 import { validationMessages } from "src/common-module/error";
-import { UserRoleEnum } from "../entities/user.entity";
+import { UserRoleEnum } from "../enum/user-role.enum";
 
 export class CreateUserDto {
 
-@IsNotEmpty({
+    @IsNotEmpty({
         message: validationMessages.required('email')
     })
- @IsEmail({}, { message: 'Invalid email format' })
+     @IsEmail({}, { message: 'Invalid email format' })
     email: string;
 
     @IsString({
@@ -18,9 +18,7 @@ export class CreateUserDto {
     })
     password: string;
 
-    @IsEnum({
-        message: validationMessages.IS_STRING('role')
-    })
+    @IsEnum({})
     @IsNotEmpty({
         message: validationMessages.required('role')
     })

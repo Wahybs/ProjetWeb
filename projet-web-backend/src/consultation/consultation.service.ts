@@ -3,6 +3,7 @@ import { ConsultationEntity } from './entities/consultation.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CrudService } from 'src/common-module/GenericCRUD';
+import { UserEntity } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class ConsultationService extends CrudService<ConsultationEntity> {
@@ -20,34 +21,22 @@ export class ConsultationService extends CrudService<ConsultationEntity> {
       .getMany();
   }
 
-
-  async findAllByMedecin(nom: string, prenom: string): Promise<ConsultationEntity[]> {
+async findAllByMedecin(user :UserEntity): Promise<ConsultationEntity[]> {
     return this.consultationRepo.createQueryBuilder('consultation')
-      .leftJoinAndSelect('consultation.medecin', 'medecin')
-      .where('medecin.nom = :nom AND medecin.prenom = :prenom', { nom, prenom })
-      .getMany();}
-
-async getAllByMedecin(user, nom: string, prenom: string): Promise<ConsultationEntity[]> {
-  if (user.role === 'admin') {
-    // Recherche par nom et prénom pour l'administrateur
-    return this.consultationRepo.createQueryBuilder('consultation')
-      .leftJoinAndSelect('consultation.medecin', 'medecin')
+      .leftJoin('consultation.medecin', 'medecin')
       .leftJoinAndSelect('consultation.patient', 'patient')
       .leftJoinAndSelect('consultation.prescription', 'prescription')
-      .where('medecin.nom = :nom AND medecin.prenom = :prenom', { nom, prenom })
+      .select([
+        'consultation.diagnostic',
+        'patient.nom',
+        'patient.prenom',
+        'patient.age',
+        'patient.dateDeNaissance',
+        'prescription.medicaments',
+      ])
+      .where('medecin.id = :userId', { userId: user.id })
       .getMany();
-  } else if (user.role === 'doctor') {
-    // Recherche par ID du médecin pour le médecin
-    const medecinId = user.id; // Assurez-vous que l'utilisateur a une propriété id
-    return this.consultationRepo.createQueryBuilder('consultation')
-      .leftJoinAndSelect('consultation.medecin', 'medecin')
-      .leftJoinAndSelect('consultation.patient', 'patient')
-      .leftJoinAndSelect('consultation.prescription', 'prescription')
-      .where('medecin.id = :medecinId', { medecinId })
-      .getMany();
-  } else {
-    throw new UnauthorizedException('Vous n\'avez pas les autorisations nécessaires.');
-  }
+ 
 }
 
 }
