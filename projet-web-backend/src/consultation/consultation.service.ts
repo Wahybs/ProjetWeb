@@ -38,16 +38,59 @@ async findAllByMedecin(user :UserEntity): Promise<ConsultationEntity[]> {
       .leftJoinAndSelect('consultation.prescription', 'prescription')
       .select([
         'consultation.diagnostic',
+        'consultation.createdAt',
         'patient.nom',
         'patient.prenom',
         'patient.age',
         'patient.dateDeNaissance',
+        'patient.path',
+        'patient.cin',
         'prescription.medicaments',
       ])
       .where('medecin.id = :userId', { userId: user.id })
       .getMany();
  
 }
+
+async findAllByPatient(user :UserEntity): Promise<ConsultationEntity[]> {
+  return this.consultationRepo.createQueryBuilder('consultation')
+    .leftJoin('consultation.patient', 'patient')
+    .leftJoinAndSelect('consultation.medecin', 'medecin')
+    .leftJoinAndSelect('consultation.prescription', 'prescription')
+    .select([
+      'consultation.diagnostic',
+      'consultation.createdAt',
+      'medecin.nom',
+      'medecin.prenom',
+      'medecin.specialite',
+      'medecin.path',
+      'prescription.medicaments',
+    ])
+    .where('patient.id = :userId', { userId: user.id })
+    .getMany();
+
+}
+
+async findAllByPatientAndMed(user: UserEntity, patientCIN: string): Promise<ConsultationEntity[]> {
+  return this.consultationRepo.createQueryBuilder('consultation')
+    .leftJoin('consultation.medecin', 'medecin')
+    .leftJoinAndSelect('consultation.patient', 'patient')
+    .leftJoinAndSelect('consultation.prescription', 'prescription')
+    .select([
+      'consultation.diagnostic',
+      'consultation.createdAt',
+      'patient.nom',
+      'patient.prenom',
+      'patient.age',
+      'patient.dateDeNaissance',
+      'patient.path',
+      'prescription.medicaments',
+    ])
+    .where('medecin.id = :userId', { userId: user.id })
+    .andWhere('patient.cin = :patientCIN', { patientCIN: patientCIN })
+    .getMany();
+}
+
    async createConsultation (user:UserEntity ,consultationdto: CreateConsultationDto): Promise<ConsultationEntity>{
 // 1. Recherche du patient par son CIN
 const cin = consultationdto.cin;

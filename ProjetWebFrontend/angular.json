@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ProjetWebFrontend": {
+    "TP_Angular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/projet-web-frontend",
+            "outputPath": "dist/tp-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -26,8 +26,12 @@
             ],
             "styles": [
               "src/styles.css"
+              
             ],
-            "scripts": []
+            "scripts": [
+              
+
+            ]
           },
           "configurations": {
             "production": {
@@ -60,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ProjetWebFrontend:build:production"
+              "browserTarget": "TP_Angular:build:production"
             },
             "development": {
-              "browserTarget": "ProjetWebFrontend:build:development"
+              "browserTarget": "TP_Angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ProjetWebFrontend:build"
+            "browserTarget": "TP_Angular:build"
           }
         },
         "test": {

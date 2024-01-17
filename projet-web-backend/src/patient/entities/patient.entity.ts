@@ -26,6 +26,9 @@ export class PatientEntity extends AbsEntity{
     })
      
     cin: string ;
+    @Column({type:"varchar"})
+     
+    path: string ;
 
     @Column({
         type: "date"

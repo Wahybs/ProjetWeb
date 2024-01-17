@@ -1,0 +1,53 @@
+<!--
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title text-center mb-4">CV {{cv.firstname }} {{cv.name }}</h4>
+            <div class="d-flex justify-content-center mb-4">
+              <img width="150px" height="150px" class="rounded-circle" src="assets/images/{{cv.path | defaultImage}}" alt="Profile Image">
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h4 class="text-center mb-3"><span class="fa fa-clock-o ion-clock"></span> Informations</h4>
+                <table class="table table-hover table-striped text-center">
+                  <tbody>
+                    <tr>
+                      <td><strong>Name:</strong> {{ cv.name | titlecase}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Firstname:</strong> {{ cv.firstname | titlecase}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Job:</strong> {{ cv.job}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Age:</strong> {{ cv.age}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>CIN:</strong> {{ cv.cin}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+  <div class="row">
+    <div class="col">
+     <app-list [consultations]="consultations"></app-list>
+    </div>
+    <div class="col">
+      <app-consultation-detail [consultation]="selectedConsultation!"></app-consultation-detail>
+    </div>
+  </div>
+
+  

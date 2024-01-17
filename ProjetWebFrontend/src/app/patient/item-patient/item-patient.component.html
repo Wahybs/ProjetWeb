@@ -1,0 +1,10 @@
+<div *ngIf="consultation" (click)="onSelectConsultation()">
+    <img
+      class="rounded-circle"
+      width="50px"
+      heigth="50px"
+      src="assets/images/{{ consultation.medecin.path|defaultImage}} "  
+      alt="{{ consultation.medecin.nom }}"
+    />
+    Consultation n° : {{consultationId }} 
+  </div>

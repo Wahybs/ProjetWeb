@@ -7,7 +7,7 @@ export class CreateUserDto {
     @IsNotEmpty({
         message: validationMessages.required('email')
     })
-     @IsEmail({}, { message: 'Invalid email format' })
+    @IsEmail({}, { message: 'Invalid email format' })
     email: string;
 
     @IsString({

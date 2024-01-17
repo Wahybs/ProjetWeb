@@ -4,7 +4,6 @@ import { ConsultationEntity } from './entities/consultation.entity';
 import { CreateConsultationDto } from './dto/consultation.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UserEntity } from 'src/user/entities/user.entity';
-import { Request } from 'express';
 import { MedecinAdminGuard } from './guards/medecin-admin.guard';
 import { MedecinGuard } from './guards/medecin.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -13,7 +12,9 @@ import { AdminGuard } from './guards/admin.guard';
 @Controller('consultation')
 export class ConsultationController {
     constructor(private readonly consultationService:ConsultationService) {}
+    
     @Get('/admin')
+    @UseGuards(AdminGuard)
     async findAll(): Promise<ConsultationEntity[]> {
       return this.consultationService.findAll();
     }
@@ -24,7 +25,19 @@ export class ConsultationController {
       const user:UserEntity = request.user; 
       return this.consultationService.findAllByMedecin(user);
     }
-    
+    @Get('/patient')
+    async findAllByPatient( @Req() request) {
+      const user:UserEntity = request.user; 
+      return this.consultationService.findAllByPatient(user);
+    }
+
+    @Get('/patient/:cin')
+    @UseGuards(MedecinAdminGuard)
+    async findAllByPatientAndMed( @Req() request , @Param('cin') cin: string) {
+      const user:UserEntity = request.user; 
+      return this.consultationService.findAllByPatientAndMed(user,cin);
+    }
+     
     @Post()
     @UseGuards(MedecinGuard)
     async create(@Body() doctorData: CreateConsultationDto, @Req() request):Promise<ConsultationEntity> {

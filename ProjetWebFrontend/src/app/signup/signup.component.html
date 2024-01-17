@@ -1,0 +1,106 @@
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  </head>
+  <form #signupformulaire="ngForm" class="p-3">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+      <div class="col">
+        <div data-mdb-input-init class="form-outline">
+          <label class="form-label" for="Firstname">First name</label>
+          <input type="text" id="Firstname" class="form-control" required string ngModel #firstnamemodel="ngModel" />
+        </div>
+      </div>
+      <div class="col">
+        <div data-mdb-input-init class="form-outline">
+          <label class="form-label" for="Lastname">Last name</label>
+          <input type="text" id="Lastname" class="form-control" required string ngModel #firstnamemodel="ngModel" />
+        </div>
+      </div>
+    </div>
+  
+    <!-- 2 column grid layout with text inputs for the age and birth date -->
+    <div class="row mb-4">
+      <div class="col">
+        <div data-mdb-input-init class="form-outline">
+          <label class="form-label" for="age">Age</label>
+          <input type="number" id="age" class="form-control" required number ngModel #agemodel="ngModel" [class.is-invalid]="agemodel.invalid && agemodel.touched" min="0"/>
+          <div class="invalid-feedback" *ngIf="(agemodel.invalid && agemodel.touched)">
+            Veuillez saisir un age valide.
+          </div>
+        </div>
+        </div>
+      <div class="col">
+        <div data-mdb-input-init class="form-outline">
+          <label class="form-label" for="Birth">Date Of Birth</label>
+          <input type="date" id="Birth" class="form-control" required date ngModel #datemodel="ngModel" [class.is-invalid]="datemodel.invalid && datemodel.touched" />
+          <div class="invalid-feedback" *ngIf="(datemodel.invalid && datemodel.touched)">
+            Veuillez saisir une date valide.
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- CIN input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="cin">CIN</label>
+        <input type="number" id="cin" name="cin" class="form-control" required number ngModel #cinmodel="ngModel" minlength="8" maxlength="8" [class.is-invalid]="cinmodel.invalid && cinmodel.touched" />
+        <div class="invalid-feedback" *ngIf="(cinmodel.invalid && cinmodel.touched)">
+          Veuillez saisir un cin valide de longueur 8 caractères
+        </div>
+
+    <!-- Email input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="email">Email address</label>
+      <input type="email" id="email" name="email" class="form-control" required email ngModel #emailmodel="ngModel" [class.is-invalid]="emailmodel.invalid && emailmodel.touched" />
+      <div class="invalid-feedback" *ngIf="(emailmodel.invalid && emailmodel.touched)">
+        Veuillez saisir un email valide.
+      </div>
+    
+    </div>
+  
+    <!-- Password input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="password">Password</label>
+      <input type="password" id="password" class="form-control" required minlength="6" ngModel name="password" #pwdmodel="ngModel" [class.is-invalid]="pwdmodel.invalid && pwdmodel.touched"/>
+      <div class="invalid-feedback" *ngIf="(pwdmodel.invalid && pwdmodel.touched)">
+        Votre mot de passe doit avoir au moins 6 caractères.
+      </div>
+    </div>
+  
+    <!-- Checkbox -->
+    <div class="form-check d-flex justify-content-center mb-4">
+      <input class="form-check-input me-2" type="checkbox" value="" id="patient" checked required ngModel name="role" #rolemodel="ngModel" [class.is-invalid]="rolemodel.invalid"/>
+      <label class="form-check-label" for="patient">
+        I am a patient
+      </label>
+      <div *ngIf="rolemodel.invalid" class="invalid-feedback">
+          <div *ngIf="rolemodel.errors?.['required']">You must confirm that you are a patient.</div>
+        </div>
+    </div>
+  
+    <!-- Submit button -->
+    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+    <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4" [disabled]="signupformulaire.invalid" (click)="signup(signupformulaire)">Sign up</button>
+    </div>
+
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>or sign up with:</p>
+      <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+  
+      <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-google"></i>
+      </button>
+  
+      <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-twitter"></i>
+      </button>
+  
+      <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-github"></i>
+      </button>
+    </div>
+
+  

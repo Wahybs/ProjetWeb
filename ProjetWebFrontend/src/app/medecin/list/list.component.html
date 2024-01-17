@@ -1,0 +1,7 @@
+<ol class="list-group">
+    <li *ngFor="let consultation of consultations ; let i=index"  class="list-group-item">
+    <app-item [consultation]="consultation" [consultationId]="initialId+i"></app-item>
+    </li>
+  </ol>
+  
+  

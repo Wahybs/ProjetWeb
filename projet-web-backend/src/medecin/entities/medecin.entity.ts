@@ -21,6 +21,9 @@ export class MedecinEntity extends AbsEntity {
         type: "varchar"
     })
     specialite: string;
+    @Column({type:"varchar"})
+     
+    path: string ;
 
     @OneToMany(type => ConsultationEntity, Consultation => Consultation.medecin, {eager: true})
     consultation: ConsultationEntity[]
