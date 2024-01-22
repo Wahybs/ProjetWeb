@@ -1,0 +1,76 @@
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  </head>
+  
+  <form #doctorForm="ngForm" class="p-3">
+    <!-- CIN input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="cin">CIN du patient</label>
+      <input
+        type="string"
+        id="cin"
+        name="cin"
+        class="form-control"
+        required
+        ngModel
+        string
+        #cinModel="ngModel"
+        minlength="8"
+        maxlength="8"
+        [class.is-invalid]="cinModel.invalid && cinModel.touched"
+      />
+      <div class="invalid-feedback" *ngIf="(cinModel.invalid && cinModel.touched)">
+        Please enter a valid 8-digit CIN.
+      </div>
+    </div>
+  
+    <!-- Diagnostic input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="diagnostic">Diagnostic</label>
+      <input
+        type="string"
+        id="diagnostic"
+        name="diagnostic"
+        class="form-control"
+        required
+        string
+        ngModel
+        #diagnosticModel="ngModel"
+      />
+    </div>
+  
+    <!-- Medicaments input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="medicament">Médicament</label>
+      <input type="text" id="medicament" name="medicament" class="form-control" ngModel #medicamentModel="ngModel" required />
+      <label class="form-label" for="dosage">Dosage</label>
+      <input type="text" id="dosage" name="dosage" class="form-control" ngModel #dosageModel="ngModel" required />
+    </div>
+  
+    <div class="mb-4">
+      <button data-mdb-ripple-init type="button" class="btn btn-success" (click)="addMedication(medicamentModel,dosageModel)">Ajouter Médicament</button>
+    </div>
+  
+    <!-- Display Medications -->
+    <div *ngIf="medications.length > 0">
+      <label class="form-label">Médicaments:</label>
+      <ul>
+        <li *ngFor="let medication of medications">
+          {{ medication.nom }} : {{ medication.dosage }}
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Submit button -->
+    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+      <button
+        data-mdb-ripple-init
+        type="button"
+        class="btn btn-primary btn-block mb-4"
+        [disabled]="doctorForm.invalid"
+        (click)="submitDoctorForm(doctorForm.value)"
+      >
+        Add Consultation
+      </button>
+    </div>
+  </form>

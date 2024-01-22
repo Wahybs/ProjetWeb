@@ -8,10 +8,10 @@ import { CreateNewUserDto } from './dto/create-new-user.dto';
 export class UserController {
   constructor(private readonly usersService: UserService) {}
 
- /* @Post()
+  @Post('/admin')
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
-  }*/
+  }
 
   @Post()
   createNewUser(@Body() createNewUserDto:CreateNewUserDto) {

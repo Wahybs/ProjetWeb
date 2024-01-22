@@ -20,6 +20,9 @@ import { ConsultationPatientDetailComponent } from './patient/consultation-patie
 import { DetailPatientComponent } from './patient/detail-patient/detail-patient.component';
 import { ItemPatientComponent } from './patient/item-patient/item-patient.component';
 import { ListPatientComponent } from './patient/list-patient/list-patient.component';
+import { AddConsultationComponent } from './addConsultation/consultation.component';
+import { ConsultationAdminComponent } from './adminDashboardConsultation/consultation-admin/consultation-admin.component';
+import { ConsultationAdminDetailComponent } from './adminDashboardConsultation/consultation-admin-detail/consultation-admin-detail.component';
 
 
 
@@ -41,6 +44,10 @@ import { ListPatientComponent } from './patient/list-patient/list-patient.compon
   DetailPatientComponent,
   ItemPatientComponent,
   ListPatientComponent,
+  AddConsultationComponent,
+  ConsultationAdminComponent,
+  ConsultationAdminDetailComponent
+
   ],
   imports: [
     FormsModule,

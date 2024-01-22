@@ -2,10 +2,10 @@
     <div class="container-fluid">
       <a
         class="navbar-brand"
-        [routerLink]="['']"
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="active text-primary"
-        >CV</a
+        *ngIf="authService.isAuthenticated()"
+       (click)="goToDashboard()"
+        
+        >Dashboard</a
       >
       <button
         class="navbar-toggler"
@@ -23,6 +23,7 @@
         
           <a
             class="nav-link"
+            *ngIf="!authService.isAuthenticated()"
             aria-current="page"
             routerLinkActive="active text-primary"
             [routerLink]="['signup']"
@@ -30,11 +31,21 @@
           >
           <a
           class="nav-link"
+          *ngIf="!authService.isAuthenticated()"
           aria-current="page"
           routerLinkActive="active text-primary"
           [routerLink]="['login']"
           >login</a
         >
+        <a
+        class="nav-link"
+        *ngIf="authService.isAuthenticated()&& isMedecin()"
+        routerLinkActive="active text-primary"
+        [routerLink]="['Consultation']"
+        aria-current="page"
+        >Consultation</a
+      >
+      <a class="nav-link" aria-current="page" *ngIf="authService.isAuthenticated()" (click)="logout()" >Logout</a>
         </div>
       </div>
     </div>

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { SignUpDTO } from './dto/signup.dto';
+import { SignUpService } from './signup.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -7,8 +11,33 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-signup(_t98: NgForm) {
-throw new Error('Method not implemented.');
-}
+
+constructor(
+  private signupService: SignUpService,
+  private router : Router,
+  private toastr : ToastrService
+){}
+
+  signup(credentials:SignUpDTO) {
+    console.log('signup function called');
+      console.log(credentials);
+      // Make a POST request to the authentication endpoint
+      this.signupService.signUp(credentials)
+      .subscribe({
+        next: (response) => {
+          // Handle successful login
+          // Store the JWT token in local storage
+          localStorage.setItem('token', response.jwt);
+        
+          this.router.navigate(['patient/dashboard']);
+        },
+        error: (error) => {
+          // Handle login error
+        
+          // Display error message using Toastr
+          this.toastr.error('User already exists!!', 'SignUp Failed');
+        }
+      });
+  }
 
 }

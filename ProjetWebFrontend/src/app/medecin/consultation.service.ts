@@ -20,6 +20,9 @@ export class ConsultationService {
   getConsultations$(): Observable<Consultation[]> {
     return this.http.get<Consultation[]>(API.dashboardMedecin)
   }
+  getAllConsultations$():Observable<Consultation[]>{
+    return this.http.get<Consultation[]>(API.dashboardConsultationAdmin)
+  }
 
   setterConsultations(item : Consultation[]){
     this.consultations = item
