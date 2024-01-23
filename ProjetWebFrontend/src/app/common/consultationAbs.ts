@@ -1,6 +1,6 @@
 export class ConsultationAbs {
   constructor(
-    public id : number=0 ,
+   // public num : number=0 ,
     public createdAt: string | null = null,
     public diagnostic: string = '',
     public prescription: {

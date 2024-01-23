@@ -23,6 +23,9 @@ import { ListPatientComponent } from './patient/list-patient/list-patient.compon
 import { AddConsultationComponent } from './addConsultation/consultation.component';
 import { ConsultationAdminComponent } from './adminDashboardConsultation/consultation-admin/consultation-admin.component';
 import { ConsultationAdminDetailComponent } from './adminDashboardConsultation/consultation-admin-detail/consultation-admin-detail.component';
+import { ItemAdminComponent } from './adminDashboardConsultation/item-admin/item-admin.component';
+import { ListAdminComponent } from './adminDashboardConsultation/list-admin/list-admin.component';
+import { DetailAdminComponent } from './adminDashboardConsultation/detail-admin/detail-admin.component';
 
 
 
@@ -46,7 +49,10 @@ import { ConsultationAdminDetailComponent } from './adminDashboardConsultation/c
   ListPatientComponent,
   AddConsultationComponent,
   ConsultationAdminComponent,
-  ConsultationAdminDetailComponent
+  ConsultationAdminDetailComponent,
+  ItemAdminComponent,
+  ListAdminComponent,
+  DetailAdminComponent
 
   ],
   imports: [

@@ -1,1 +1,55 @@
-<p>consultation-admin-detail works!</p>
+<div *ngIf="consultation" class="card-container">
+    <div class="card">
+      <div class="front">
+        <div class="cover">
+          <img src="assets/images/rotating_card_thumb2.png" />
+        </div>
+        <div class="user">
+          <img class="img-circle" src="assets/images/{{consultation.medecin.path|defaultImage}}" />
+        </div>
+        <div class="content">
+          <div class="main">
+            <h2 class="name">Dr.{{ consultation.medecin.nom }} {{ consultation.medecin.prenom }}</h2>
+            <h3 class="name">Specialite: {{ consultation.medecin.specialite }} </h3>
+            <h4 class="name">Patient: {{ consultation.patient.nom }} {{ consultation.patient.prenom }}</h4>
+            <p class="text-center">
+             Age patient:  {{consultation.patient.age}}
+            </p>
+          </div>
+          <div class="footer">
+            <i class="fa fa-mail-forward"></i> Auto Rotation
+          </div>
+        </div>
+      </div>
+      <div class="back">
+        <div class="header">
+          <h5 class="motto"> Date consultation : {{consultation.createdAt}}</h5>
+          <br>
+          <h4 class="text-center">
+            Diagnostique : {{consultation.diagnostic}}
+          </h4>
+        </div>
+  
+        <div class="content">
+          <div class="main">
+            <br>
+            <h5>Medicaments:</h5>
+            <br>
+            <div>
+              <ul *ngFor="let medicament of consultation.prescription.medicaments">
+                <li>Nom:{{ medicament.nom }}
+                  <br>
+                  Dosage: {{ medicament.dosage }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <button class="btn btn-primary" (click)="getmoreinfoAboutMed()">Medecin</button>
+          <button class="btn btn-primary" (click)="Modify()">Modifier</button>
+          <button class="btn btn-primary" (click)="Delete()">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>

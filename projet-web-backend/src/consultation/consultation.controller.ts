@@ -1,5 +1,5 @@
 import { ConsultationService } from './consultation.service';
-import { Controller, Get, Param,Post ,Body ,Delete, UseGuards, Req} from '@nestjs/common';
+import { Controller, Get, Param,Post ,Body ,Delete, UseGuards, Req, Query} from '@nestjs/common';
 import { ConsultationEntity } from './entities/consultation.entity';
 import { CreateConsultationDto } from './dto/consultation.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
@@ -8,10 +8,13 @@ import { MedecinAdminGuard } from './guards/medecin-admin.guard';
 import { MedecinGuard } from './guards/medecin.guard';
 import { AdminGuard } from './guards/admin.guard';
 
+
 @UseGuards(JwtAuthGuard)
 @Controller('consultation')
 export class ConsultationController {
-    constructor(private readonly consultationService:ConsultationService) {}
+    constructor(private readonly consultationService:ConsultationService) {
+
+    }
     
     @Get('/admin')
     @UseGuards(AdminGuard)
@@ -21,9 +24,13 @@ export class ConsultationController {
 
     @Get()
     @UseGuards(MedecinAdminGuard)
-    async findAllByMed( @Req() request) {
+    async findAllByMed( @Req() request , @Query('id') id? : string) {
       const user:UserEntity = request.user; 
+      if (user.role ==="medecin")
       return this.consultationService.findAllByMedecin(user);
+    else {
+      return this.consultationService.findAllByMedecin(user,id);
+    }
     }
     @Get('/patient')
     async findAllByPatient( @Req() request) {

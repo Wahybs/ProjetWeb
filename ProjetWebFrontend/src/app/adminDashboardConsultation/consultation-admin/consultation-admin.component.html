@@ -1,1 +1,8 @@
-<p>consultation-admin works!</p>
+<div class="row">
+    <div class="col">
+     <app-list-admin [consultations]="consultations"></app-list-admin>
+    </div>
+    <div class="col">
+      <app-consultation-admin-detail [consultation]="selectedConsultation!"></app-consultation-admin-detail>
+    </div>
+</div>

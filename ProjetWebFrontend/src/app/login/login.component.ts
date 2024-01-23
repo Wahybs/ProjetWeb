@@ -50,6 +50,8 @@ export class LoginComponent implements OnInit{
           if (role==='medecin')
           // Redirect to the dashboard
           this.router.navigate(['medecin/dashboard']);
+          else if(role==='admin') 
+          this.router.navigate(['admin/dashboard']);
           else 
           this.router.navigate(['patient/dashboard']);
         },

@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { distinctUntilChanged } from 'rxjs';
-import { ConsultationService } from 'src/app/medecin/consultation.service';
-import { Consultation } from 'src/app/medecin/model/consultation';
+import { ConsultationAdmin } from '../model/consultationAdmin';
+import { ConsultationAdminService } from '../consultationAdmin.service';
 
 @Component({
   selector: 'app-consultation-admin',
-  templateUrl: '../../medecin/consultation/consultation.component.html'
+  templateUrl: './consultation-admin.component.html'
 })
 export class ConsultationAdminComponent {
-  selectedConsultation: Consultation |null=null;
-  consultations : Consultation[] =[];
-  constructor(private consultationservice : ConsultationService , private toastr:ToastrService ) {
+  selectedConsultation: ConsultationAdmin |null=null;
+  consultations : ConsultationAdmin[] =[];
+  constructor(private consultationservice : ConsultationAdminService , private toastr:ToastrService ) {
     this.consultationservice.getAllConsultations$().subscribe({
      next: (item)=>{
         this.consultations = item;

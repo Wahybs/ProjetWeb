@@ -32,6 +32,9 @@ export class NavbarComponent {
           case 'patient':
             this.router.navigate(['patient/dashboard']);
             break;
+          case 'admin' :
+            this.router.navigate(['admin/dashboard']);
+            break;
           default:
             console.error('Invalid or unsupported role:', role);
             // Handle the case when the role is not 'medecin' or 'patient'

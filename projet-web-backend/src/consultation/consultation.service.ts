@@ -23,6 +23,8 @@ export class ConsultationService extends CrudService<ConsultationEntity> {
   ) {
      super (consultationRepo);
   }
+
+ 
   async findAll(): Promise<ConsultationEntity[]> {
     return this.consultationRepo.createQueryBuilder('consultation')
       .leftJoinAndSelect('consultation.medecin', 'medecin')
@@ -31,8 +33,9 @@ export class ConsultationService extends CrudService<ConsultationEntity> {
       .getMany();
   }
 
-async findAllByMedecin(user :UserEntity): Promise<ConsultationEntity[]> {
-    return this.consultationRepo.createQueryBuilder('consultation')
+async findAllByMedecin(user :UserEntity , id?: string ): Promise<ConsultationEntity[]> {
+  if (!id) 
+  return this.consultationRepo.createQueryBuilder('consultation')
       .leftJoin('consultation.medecin', 'medecin')
       .leftJoinAndSelect('consultation.patient', 'patient')
       .leftJoinAndSelect('consultation.prescription', 'prescription')
@@ -49,6 +52,25 @@ async findAllByMedecin(user :UserEntity): Promise<ConsultationEntity[]> {
       ])
       .where('medecin.id = :userId', { userId: user.id })
       .getMany();
+   else 
+   return this.consultationRepo.createQueryBuilder('consultation')
+      .leftJoin('consultation.medecin', 'medecin')
+      .leftJoinAndSelect('consultation.patient', 'patient')
+      .leftJoinAndSelect('consultation.prescription', 'prescription')
+      .select([
+        'consultation.diagnostic',
+        'consultation.createdAt',
+        'patient.nom',
+        'patient.prenom',
+        'patient.age',
+        'patient.dateDeNaissance',
+        'patient.path',
+        'patient.cin',
+        'prescription.medicaments',
+      ])
+      .where('medecin.id = :userId', { userId: id })
+      .getMany();
+
  
 }
 

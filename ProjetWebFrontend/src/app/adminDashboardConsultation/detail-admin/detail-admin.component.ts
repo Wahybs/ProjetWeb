@@ -1,20 +1,16 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
-import { Consultation } from '../model/consultation';
-import { ConsultationService } from '../consultation.service';
 import { ToastrService } from 'ngx-toastr';
 import { distinctUntilChanged } from 'rxjs';
-
+import { ConsultationService } from 'src/app/medecin/consultation.service';
+import { Consultation } from 'src/app/medecin/model/consultation';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html'
-  
+  selector: 'app-detail-admin',
+  templateUrl: './detail-admin.component.html',
+  styleUrls: ['./detail-admin.component.css']
 })
-
-export class DetailComponent {
+export class DetailAdminComponent {
   @Input()
   consultations: Consultation []  = [];
   selectedConsultation: Consultation |null=null;
@@ -23,9 +19,9 @@ export class DetailComponent {
     private  router : Router,
     private toastr: ToastrService
     ) {
-    const consultationId = activerouter.snapshot.params['cin'];
+    const consultationId = activerouter.snapshot.params['id'];
     
-    this.consultationservice.getConsultationByPatientAndMed(consultationId).subscribe({
+    this.consultationservice.getConsultations$(consultationId).subscribe({
       next: (item)=>{
          this.consultations = item;
          this.consultationservice.setterConsultations(item)
@@ -41,6 +37,4 @@ export class DetailComponent {
     
     
   }
-
-
 }
