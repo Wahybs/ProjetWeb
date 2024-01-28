@@ -26,6 +26,12 @@ import { ConsultationAdminDetailComponent } from './adminDashboardConsultation/c
 import { ItemAdminComponent } from './adminDashboardConsultation/item-admin/item-admin.component';
 import { ListAdminComponent } from './adminDashboardConsultation/list-admin/list-admin.component';
 import { DetailAdminComponent } from './adminDashboardConsultation/detail-admin/detail-admin.component';
+import { ConsultationModifyAdminComponent } from './adminDashboardConsultation/consultation-modify-admin/consultation-modify-admin.component';
+import { DashboardMedecinAdminComponent } from './adminDashboardMedecin/dashboard-medecin/dashboard-medecin.component';
+import { DashboardMedecinDetailAdminComponent } from './adminDashboardMedecin/dashboard-medecin-detail/dashboard-medecin-detail.component';
+import { MedecinDetailAdminComponent } from './adminDashboardMedecin/medecin-detail/medecin-detail.component';
+import { MedecinItemAdminComponent } from './adminDashboardMedecin/medecin-item/medecin-item.component';
+import { MedecinListAdminComponent } from './adminDashboardMedecin/medecin-list/medecin-list.component';
 
 
 
@@ -52,7 +58,14 @@ import { DetailAdminComponent } from './adminDashboardConsultation/detail-admin/
   ConsultationAdminDetailComponent,
   ItemAdminComponent,
   ListAdminComponent,
-  DetailAdminComponent
+  DetailAdminComponent,
+  ConsultationModifyAdminComponent,
+  DashboardMedecinAdminComponent,
+  DashboardMedecinDetailAdminComponent,
+  MedecinDetailAdminComponent,
+  MedecinItemAdminComponent,
+  MedecinListAdminComponent,
+
 
   ],
   imports: [

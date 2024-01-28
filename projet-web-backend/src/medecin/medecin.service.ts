@@ -13,6 +13,13 @@ export class MedecinService extends CrudService <MedecinEntity> {
       ) {
         super (medecinRepo);
       }
+     async findAll(): Promise<MedecinEntity[]> {
+      const medecins = await this.medecinRepo
+      .createQueryBuilder('medecin')
+      .select(['medecin.nom', 'medecin.prenom', 'medecin.specialite','medecin.path'])
+      .getMany();
+    return medecins;
+      }
     }
     
 

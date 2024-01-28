@@ -1,8 +1,7 @@
-import { Type } from "class-transformer";
-import {  IsJSON, IsNotEmpty, IsString, ValidateNested } from "class-validator";
+import {   IsNotEmpty, IsString} from "class-validator";
 import { validationMessages } from "src/common-module/error";
 
-export class CreateConsultationDto {
+export class CreateConsultationDto  {
     @IsString({
         message: validationMessages.IS_STRING('diagnostic')
     })

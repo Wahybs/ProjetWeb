@@ -3,8 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import { Observable, Subject } from 'rxjs';
 import { Consultation } from './model/consultation';
 import { API } from '../config/api.config';
-import { ConsultationAdmin } from '../adminDashboardConsultation/model/consultationAdmin';
-import { query } from '@angular/animations';
+
 
 @Injectable({
   providedIn: 'root'

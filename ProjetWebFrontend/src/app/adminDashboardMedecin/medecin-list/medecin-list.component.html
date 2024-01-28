@@ -1,0 +1,5 @@
+<ol class="list-group">
+    <li *ngFor="let medecin of medecins ; let i=index"  class="list-group-item">
+    <app-medecin-item [medecin]="medecin" [medecinId]="initialId+i"></app-medecin-item>
+    </li>
+  </ol>

@@ -1,0 +1,58 @@
+<form #doctorForm="ngForm" class="p-3">
+    <!-- CIN input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="cin">CIN du patient</label>
+      <input
+        type="string"
+        id="cin"
+        name="cin"
+        class="form-control"
+        required
+        [(ngModel)]="consultation.patient.cin" 
+        #cinModel="ngModel"
+        minlength="8"
+        maxlength="8"
+        [class.is-invalid]="cinModel.invalid && cinModel.touched"
+      />
+      <div class="invalid-feedback" *ngIf="(cinModel.invalid && cinModel.touched)">
+        Please enter a valid 8-digit CIN.
+      </div>
+    </div>
+  
+    <!-- Diagnostic input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="diagnostic">Diagnostic</label>
+      <input
+        type="string"
+        id="diagnostic"
+        name="diagnostic"
+        class="form-control"
+        required
+        [(ngModel)]="consultation.diagnostic" 
+        #diagnosticModel="ngModel"
+      />
+    </div>
+  
+    <!-- Medicaments input -->
+    <div class="form-group">
+        <label for="medicaments">Médicaments</label>
+        <!-- Boucle ngFor pour afficher chaque médicament avec son nom et son dosage -->
+        <div *ngFor="let medicament of consultation.prescription.medicaments; let i = index">
+          <input type="text" class="form-control" id="medicament{{i}}" name="medicament{{i}}" [(ngModel)]="consultation.prescription.medicaments[i].nom" required>
+          <input type="text" class="form-control" id="dosage{{i}}" name="dosage{{i}}" [(ngModel)]="consultation.prescription.medicaments[i].dosage" required>
+        </div>
+      </div>
+  
+    <!-- Submit button -->
+    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+      <button
+        data-mdb-ripple-init
+        type="button"
+        class="btn btn-primary btn-block mb-4"
+        (click)="submitDoctorForm(doctorForm.value)"
+      >
+        Modify Consultation
+      </button>
+    </div>
+  </form>
+  

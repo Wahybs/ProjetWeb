@@ -1,12 +1,13 @@
 import { ConsultationService } from './consultation.service';
-import { Controller, Get, Param,Post ,Body ,Delete, UseGuards, Req, Query} from '@nestjs/common';
+import { Controller, Get, Param,Post ,Body ,Delete, UseGuards, Req, Query,Patch} from '@nestjs/common';
 import { ConsultationEntity } from './entities/consultation.entity';
-import { CreateConsultationDto } from './dto/consultation.dto';
+import { CreateConsultationDto } from './dto/create-consultation.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UserEntity } from 'src/user/entities/user.entity';
 import { MedecinAdminGuard } from './guards/medecin-admin.guard';
 import { MedecinGuard } from './guards/medecin.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { UpdateConsultationDto } from './dto/update-consultation.dto';
 
 
 @UseGuards(JwtAuthGuard)
@@ -55,7 +56,7 @@ export class ConsultationController {
     @Get('/admin/:id')
     @UseGuards(AdminGuard)
     async findOne(@Param('id') id: string): Promise<ConsultationEntity> {
-      return this.consultationService.findOne(id);
+      return this.consultationService.findConsultationById(id);
     }
  
     @Delete('/admin/:id')
@@ -63,4 +64,10 @@ export class ConsultationController {
     async delete(@Param('id') id: string): Promise<void> {
        this.consultationService.remove(id);
     }
+
+    @Patch('/admin/:id')
+    @UseGuards(AdminGuard)
+    async modify(@Param('id') id: string, @Body() consultation : UpdateConsultationDto ): Promise<void> {
+       this.consultationService.modifierConsultation(id,consultation);
+   }
 }
