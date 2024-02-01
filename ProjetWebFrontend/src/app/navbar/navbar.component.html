@@ -46,12 +46,29 @@
       >
       <a
       class="nav-link"
-      *ngIf="authService.isAuthenticated()"
+      *ngIf="authService.isAuthenticated()&& isAdmin()"
+      routerLinkActive="active text-primary"
+      [routerLink]="['patients']"
+      aria-current="page"
+      >Patients</a
+    >
+      <a
+      class="nav-link"
+      *ngIf="authService.isAuthenticated()&& isAdmin()"
       routerLinkActive="active text-primary"
       [routerLink]="['medecins']"
       aria-current="page"
       >Medecins</a
     >
+    <a
+    class="nav-link"
+    *ngIf="authService.isAuthenticated()&& isAdmin()"
+    routerLinkActive="active text-primary"
+    [routerLink]="['addMedecin']"
+    aria-current="page"
+    >Ajouter Medecin</a
+  >
+
     
       <a class="nav-link" aria-current="page" *ngIf="authService.isAuthenticated()" (click)="logout()" >Logout</a>
         </div>

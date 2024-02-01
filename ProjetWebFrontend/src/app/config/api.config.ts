@@ -5,5 +5,7 @@ export const API = {
     signup: 'http://localhost:3000/user',
     addConsultation:'http://localhost:3000/consultation',
     dashboardConsultationAdmin:'http://localhost:3000/consultation/admin',
-    getMedecin:'http://localhost:3000/medecin'
+    getMedecin:'http://localhost:3000/medecin/admin',
+    getPatient:'http://localhost:3000/patient',
+    addDoctor:'http://localhost:3000/user/admin/addmedecin'
   };

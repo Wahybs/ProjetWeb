@@ -32,6 +32,12 @@ import { DashboardMedecinDetailAdminComponent } from './adminDashboardMedecin/da
 import { MedecinDetailAdminComponent } from './adminDashboardMedecin/medecin-detail/medecin-detail.component';
 import { MedecinItemAdminComponent } from './adminDashboardMedecin/medecin-item/medecin-item.component';
 import { MedecinListAdminComponent } from './adminDashboardMedecin/medecin-list/medecin-list.component';
+import { AddMedecinComponent } from './add-medecin/add-medecin.component';
+import { PatientAdminComponent } from './patientAdmin/patient-admin/patient-admin.component';
+import { DetailPatientAdminComponent } from './patientAdmin/detail-patient-admin/detail-patient-admin.component';
+import { ItemPatientAdminComponent } from './patientAdmin/item-patient-admin/item-patient-admin.component';
+import { ListPatientAdminComponent } from './patientAdmin/list-patient-admin/list-patient-admin.component';
+import { ModifierPatientAdminComponent } from './patientAdmin/modifier-patient-admin/modifier-patient-admin.component';
 
 
 
@@ -65,6 +71,12 @@ import { MedecinListAdminComponent } from './adminDashboardMedecin/medecin-list/
   MedecinDetailAdminComponent,
   MedecinItemAdminComponent,
   MedecinListAdminComponent,
+  AddMedecinComponent,
+  PatientAdminComponent,
+  DetailPatientAdminComponent,
+  ItemPatientAdminComponent,
+  ListPatientAdminComponent,
+  ModifierPatientAdminComponent,
 
 
   ],

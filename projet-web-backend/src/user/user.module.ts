@@ -6,6 +6,7 @@ import { UserService } from './user.service';
 import { PatientEntity } from 'src/patient/entities/patient.entity';
 import { JwtModule } from '@nestjs/jwt';
 import * as dotenv from 'dotenv';
+import { MedecinEntity } from 'src/medecin/entities/medecin.entity';
 
 dotenv.config();
 @Module({
@@ -14,7 +15,7 @@ dotenv.config();
   exports: [UserService],
   imports: [
     TypeOrmModule.forFeature(
-      [UserEntity,PatientEntity]
+      [UserEntity,PatientEntity,MedecinEntity]
     ),
     JwtModule.register({
       secret: process.env.SECRET,

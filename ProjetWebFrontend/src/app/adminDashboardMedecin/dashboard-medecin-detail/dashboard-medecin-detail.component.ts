@@ -2,8 +2,8 @@ import { Component, Input, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, takeUntil } from 'rxjs';
-import { Medecin } from 'src/app/patient/model/medecin';
 import { MedecinAdminService } from '../MedecinAdmin.service';
+import { MedecinAdmin } from '../model/medecinAdmin';
 
 @Component({
   selector: 'app-dashboard-medecin-detail',
@@ -12,7 +12,7 @@ import { MedecinAdminService } from '../MedecinAdmin.service';
 })
 export class DashboardMedecinDetailAdminComponent {
   @Input()
-  medecin: Medecin = new Medecin();
+medecin = new MedecinAdmin();
 
   subject = new Subject();
   private medecinservice = inject(MedecinAdminService);
@@ -24,24 +24,22 @@ export class DashboardMedecinDetailAdminComponent {
         takeUntil(this.subject)
       )
       .subscribe(
-        (medecin: Medecin) => this.medecin = medecin
+        (medecin: MedecinAdmin) => this.medecin = medecin
       )
 
 
   }
-  ngOnDestroy(): void {
-    this.subject.next('je complete tout mes observateurs');
-    this.subject.complete();
-  }
+ 
   Delete() {
-    //this.medecinservice.deletemedecin(this.medecin.id)
-   // .subscribe({
-     // next: () => {
-     // },
-     // error: () => {
-     //   this.toastr.warning("Connexion a l'API à échouer");
-     // }
-   // });
+    this.medecinservice.deleteMedecin(this.medecin.id)
+    .subscribe({
+      next: () => {
+        this.toastr.success("Medecin supprimé");
+      },
+      error: () => {
+        this.toastr.warning("Connexion a l'API à échouer");
+      }
+    });
 
   }
 

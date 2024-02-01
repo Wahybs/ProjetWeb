@@ -1,3 +1,4 @@
+import { Transform } from "class-transformer";
 import {  IsDate, IsNotEmpty, IsString } from "class-validator";
 import { validationMessages } from "src/common-module/error";
 
@@ -23,6 +24,7 @@ export class CreatePatientDto {
         message: validationMessages.required('age')
     })
     age: string;
+    @Transform(({value})=>new Date (value))
     @IsDate({
         message: validationMessages.IS_DATE('dateDeNaissance')
     })

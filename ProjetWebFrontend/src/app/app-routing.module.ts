@@ -10,18 +10,24 @@ import { ConsultationAdminComponent } from './adminDashboardConsultation/consult
 import { DetailAdminComponent } from './adminDashboardConsultation/detail-admin/detail-admin.component';
 import { ConsultationModifyAdminComponent } from './adminDashboardConsultation/consultation-modify-admin/consultation-modify-admin.component';
 import { DashboardMedecinAdminComponent } from './adminDashboardMedecin/dashboard-medecin/dashboard-medecin.component';
+import { AddMedecinComponent } from './add-medecin/add-medecin.component';
+import { PatientAdminComponent } from './patientAdmin/patient-admin/patient-admin.component';
+import { ModifierPatientAdminComponent } from './patientAdmin/modifier-patient-admin/modifier-patient-admin.component';
 
 const routes: Routes = [
   {path:"medecin/dashboard",component:ConsultationComponent},
   {path:"patient/dashboard",component:ConsultationPatientComponent},
   {path:"medecins",component:DashboardMedecinAdminComponent},
+  {path:"patients",component:PatientAdminComponent},
+  {path:"addMedecin",component:AddMedecinComponent},
   {path:"admin/dashboard",component:ConsultationAdminComponent},
   {path:"patient/detail/:cin",component:DetailComponent},
   {path:"medecin/detail/:id",component:DetailAdminComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path:'Consultation', component:AddConsultationComponent},
-  {path:"consultation/modifier/:id",component:ConsultationModifyAdminComponent}
+  {path:"consultation/modifier/:id",component:ConsultationModifyAdminComponent},
+  {path:"patient/modifier/:id",component:ModifierPatientAdminComponent}
 ];
 
 @NgModule({

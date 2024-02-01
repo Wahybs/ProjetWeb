@@ -1,5 +1,3 @@
-import { Patient } from "src/app/medecin/model/patient";
-
 
 export class UpdateConsultation {
     constructor(

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Medecin } from 'src/app/patient/model/medecin';
 import { MedecinAdminService } from '../MedecinAdmin.service';
+import { MedecinAdmin } from '../model/medecinAdmin';
 
 @Component({
   selector: 'app-medecin-item',
@@ -10,7 +10,7 @@ import { MedecinAdminService } from '../MedecinAdmin.service';
 export class MedecinItemAdminComponent {
 
   @Input()
-  medecin: Medecin | null = null; 
+  medecin: MedecinAdmin | null = null; 
   @Input()
   medecinId:number=1;
 constructor( private medecinservice : MedecinAdminService){

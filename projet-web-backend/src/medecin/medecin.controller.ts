@@ -6,7 +6,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { AdminGuard } from 'src/consultation/guards/admin.guard';
 
 @UseGuards(JwtAuthGuard,AdminGuard)
-@Controller('medecin')
+@Controller('medecin/admin')
 export class MedecinController {
     constructor(private readonly MedecinService: MedecinService) {}
     @Get()

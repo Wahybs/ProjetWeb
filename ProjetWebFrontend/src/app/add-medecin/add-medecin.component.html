@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <h2>Ajouter un médecin</h2>
+    <form #addDoctorForm="ngForm" (ngSubmit)="submitDoctorForm(addDoctorForm.value)" class="p-3">
+   <div class="row mb-4">
+        <div class="col">
+      <div class="form-outline">
+        <label for="prenom" class="form-label">Prénom:</label>
+        <input type="text" class="form-control" id="prenom" name="prenom" ngModel required>
+      </div>
+  </div>
+  <div class="col">
+      <div class="form-outline">
+     
+        <label for="nom" class="form-label">Nom:</label>
+        <input type="text" class="form-control" id="nom" name="nom" ngModel required>
+      </div>
+  </div>
+  </div>
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+        <label for="specialite">Spécialité:</label>
+        <input type="text" class="form-control" id="specialite" name="specialite" ngModel required>
+      </div>
+  </div>
+  </div>
+
+<div class="row mb-4">
+    <div class="col">
+      <div class="form-outline">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" name="email" ngModel required email>
+  </div>
+</div>
+</div>
+<div class="row mb-4">
+    <div class="col">
+      <div class="form-outline">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password" name="password" ngModel required>
+  </div>
+</div>
+</div>
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+  </div>

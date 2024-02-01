@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Medecin } from 'src/app/patient/model/medecin';
+import { MedecinAdmin } from '../model/medecinAdmin';
 
 @Component({
   selector: 'app-medecin-list',
@@ -8,6 +8,6 @@ import { Medecin } from 'src/app/patient/model/medecin';
 })
 export class MedecinListAdminComponent {
   @Input() 
-  medecins: Medecin[] = [];
+  medecins: MedecinAdmin[] = [];
   initialId: number=1;
 }

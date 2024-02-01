@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { distinctUntilChanged } from 'rxjs';
 import { Medecin } from 'src/app/patient/model/medecin';
 import { MedecinAdminService } from '../MedecinAdmin.service';
+import { MedecinAdmin } from '../model/medecinAdmin';
 
 @Component({
   selector: 'app-medecin-detail',
@@ -12,8 +13,8 @@ import { MedecinAdminService } from '../MedecinAdmin.service';
 })
 export class MedecinDetailAdminComponent {
   @Input()
-  medecins: Medecin []  = [];
-  selectedMedecin: Medecin |null=null;
+  medecins: MedecinAdmin []  = [];
+  selectedMedecin: MedecinAdmin |null=null;
    constructor( private activerouter : ActivatedRoute, 
     private Medecinservice : MedecinAdminService,
     private  router : Router,

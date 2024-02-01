@@ -2,39 +2,39 @@ import { Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import { Observable, Subject } from 'rxjs';
 import { API } from '../config/api.config';
-import { Medecin } from '../patient/model/medecin';
+import { MedecinAdmin } from './model/medecinAdmin';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MedecinAdminService {
 ;
-  private selectMedecinSubject = new Subject<Medecin>();
+  private selectMedecinSubject = new Subject<MedecinAdmin>();
   selectMedecin$ = this.selectMedecinSubject.asObservable();
  
-  private medecins : Medecin[] = []
+  private medecins : MedecinAdmin[] = []
 
   constructor(private http:HttpClient) {}
   
-  getAllMedecins$():Observable<Medecin[]>{
-    return this.http.get<Medecin[]>(API.getMedecin)
+  getAllMedecins$():Observable<MedecinAdmin[]>{
+    return this.http.get<MedecinAdmin[]>(API.getMedecin)
   }
   
   
-  setterMedecin(item : Medecin[]){
+  setterMedecin(item : MedecinAdmin[]){
     this.medecins = item
   } 
 
-   selectMedecin(medecin: Medecin) {
+   selectMedecin(medecin: MedecinAdmin) {
     this.selectMedecinSubject.next(medecin);
   }
   
 
- /* deleteConsultation(id : string):Observable<void>{
-    return this.http.delete<void>(`http://localhost:3000/consultation/admin/${id}`);
+  deleteMedecin(id : string):Observable<void>{
+    return this.http.delete<void>(`http://localhost:3000/medecin/admin/${id}`);
   }
 
-  getConsultationById(id:string): Observable<UpdateConsultation>{
+ /* getConsultationById(id:string): Observable<UpdateConsultation>{
     return this.http.get<UpdateConsultation>(`http://localhost:3000/consultation/admin/${id}`);
   }
 

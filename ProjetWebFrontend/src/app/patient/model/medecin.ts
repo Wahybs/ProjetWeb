@@ -1,6 +1,7 @@
 export class Medecin {
 
     constructor(
+     
         public nom = "",
         public prenom = "",
         public specialite="",

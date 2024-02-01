@@ -1,0 +1,44 @@
+<div *ngIf="patient" class="card-container">
+    <div class="card">
+      <div class="front">
+        <div class="cover">
+          <img src="assets/images/rotating_card_thumb2.png" />
+        </div>
+        <div class="user">
+          <img class="img-circle" src="assets/images/{{patient.path|defaultImage}}" />
+        </div>
+        <div class="content">
+          <div class="main">
+            <h3 class="name">{{ patient.nom }} {{ patient.prenom }}</h3>
+  
+            <p class="text-center">
+              Age: {{patient.age}}
+            </p>
+            <p class="text-center">
+              Date de naissance: {{patient.dateDeNaissance}}
+            </p>
+            <p class="text-center">
+              CIN: {{patient.cin}}
+            </p>
+  
+          </div>
+  
+        </div>
+      </div>
+      <div class="back">
+        <div class="header">
+          <h5 class="motto"> </h5>
+  
+        </div>
+        <div class="content">
+          <div class="main">
+          
+          </div>
+        </div>
+        <div class="footer">
+          <button class="btn btn-primary" (click)="Modify()">Modifier</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>

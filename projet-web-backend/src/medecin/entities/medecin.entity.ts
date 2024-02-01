@@ -27,6 +27,7 @@ export class MedecinEntity extends AbsEntity {
 
     @OneToMany(type => ConsultationEntity, Consultation => Consultation.medecin, {eager: true})
     consultation: ConsultationEntity[]
-
+    
+    
    
 }

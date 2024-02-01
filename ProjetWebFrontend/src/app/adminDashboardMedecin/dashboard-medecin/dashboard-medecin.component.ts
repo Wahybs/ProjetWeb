@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { distinctUntilChanged } from 'rxjs';
 import { Medecin } from 'src/app/patient/model/medecin';
 import { MedecinAdminService } from '../MedecinAdmin.service';
+import { MedecinAdmin } from '../model/medecinAdmin';
 
 @Component({
   selector: 'app-dashboard-medecin',
@@ -10,8 +11,8 @@ import { MedecinAdminService } from '../MedecinAdmin.service';
   
 })
 export class DashboardMedecinAdminComponent {
-  selectedMedecin: Medecin |null=null;
-  medecins : Medecin[] =[];
+  selectedMedecin: MedecinAdmin |null=null;
+  medecins : MedecinAdmin[] =[];
   constructor( private medecinservice : MedecinAdminService ,
    private toastr:ToastrService ) {
     this.medecinservice.getAllMedecins$().subscribe({
