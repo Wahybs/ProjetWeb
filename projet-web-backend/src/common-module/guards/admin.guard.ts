@@ -10,10 +10,8 @@ export class AdminGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const user: UserEntity = request.user;
     if (!user || !user.role || user.role !== UserRoleEnum.admin ) {
-      // Si l'utilisateur n'est pas authentifié, s'il n'a pas de rôle ou si son rôle n'est pas 'medecin', le guard bloque l'accès
       throw new UnauthorizedException('You do not have the required role to access this resource.');
     }
-
     return true;
   }
 }

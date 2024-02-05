@@ -2,7 +2,7 @@ import { Transform } from "class-transformer";
 import { IsDate, IsEmail,  IsNotEmpty, IsString } from "class-validator";
 import { validationMessages } from "src/common-module/error";
 
-
+//signup
 export class CreateNewUserDto {
 
     @IsNotEmpty({

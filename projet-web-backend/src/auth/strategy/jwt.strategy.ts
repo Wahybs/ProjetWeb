@@ -13,13 +13,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: configService.get('SECRET'),
     });
   }
-
-  async validate(jwtPayloadDto: JwtPayloadDto) {
-    
+  async validate(jwtPayloadDto: JwtPayloadDto) { 
     const user = await this.userService.findByEmail(
       jwtPayloadDto.email,
     );
-    
     if (!user)
     throw new NotFoundException();
 
@@ -30,8 +27,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       delete user .createdAt;
       delete user.deletedAt;
       delete user.updatedAt;
-    //  const {password,hash,createdAt,updatedAt,deletedAt, ...result}=user;
-     // return result;
+    
      return user;
     }
    else {

@@ -5,7 +5,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateNewUserDto } from './dto/create-new-user.dto';
 import { CreateNewDoctorDto } from './dto/create-new-doctor.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { AdminGuard } from 'src/consultation/guards/admin.guard';
+import { AdminGuard } from 'src/common-module/guards/admin.guard';
 
 @Controller('user')
 export class UserController {

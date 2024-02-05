@@ -118,7 +118,7 @@ export class ConsultationService extends CrudService<ConsultationEntity> {
     // 1. Recherche du patient par son CIN
     const cin = consultationdto.cin;
     const patient = await this.patientRepository.findOne({ where: { cin } });
-
+    
     if (!patient) {
       throw new NotFoundException('Patient not found');
     }

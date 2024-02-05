@@ -3,7 +3,7 @@ import { MedecinService } from './medecin.service';
 import { MedecinEntity } from './entities/medecin.entity';
 import { CreateMedecinDto } from './dto/create-medecin.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { AdminGuard } from 'src/consultation/guards/admin.guard';
+import { AdminGuard } from 'src/common-module/guards/admin.guard';
 
 @UseGuards(JwtAuthGuard,AdminGuard)
 @Controller('medecin/admin')

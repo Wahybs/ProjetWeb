@@ -3,7 +3,7 @@ import { PatientService } from './patient.service';
 import { PatientEntity } from './entities/patient.entity';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { AdminGuard } from 'src/consultation/guards/admin.guard';
+import { AdminGuard } from 'src/common-module/guards/admin.guard';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 
 

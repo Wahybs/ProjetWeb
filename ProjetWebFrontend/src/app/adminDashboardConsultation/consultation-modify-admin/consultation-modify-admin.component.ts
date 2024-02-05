@@ -34,11 +34,11 @@ export class ConsultationModifyAdminComponent {
   submitDoctorForm(consultation:UpdateConsultation): void {
     this.consultationService.modifyConsultation(this.consultationId,consultation)
     .subscribe({
-      next: (response) => {
+      next: () => {
         this.router.navigate(['admin/dashboard']);
         this.toastr.success('Consultation added successfully', 'Success');
       },
-      error: (error) => {
+      error: () => {
         this.toastr.error('Error adding consultation', 'Error');
       }
     });

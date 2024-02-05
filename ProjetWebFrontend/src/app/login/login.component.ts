@@ -1,17 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 import { CredentialsDto } from './DTO/credentials.dto';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './auth.service';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
  
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
   email: string = '';  // Ensure these properties are defined
   password: string = '';  // Ensure these properties are defined
   constructor(
@@ -19,26 +18,10 @@ export class LoginComponent implements OnInit{
     private toastr: ToastrService,
     private router: Router
   ) {}
-  ngOnInit() {
-  }
- 
-  // Function to handle the login button click
-  login(credentials:CredentialsDto) {
-    // Check if the form is valid
   
-      // Get the email and password from the form
-     /* const email = loginForm.value.email;
-      const password = loginForm.value.password;
-
-      // Define the login data
-      const loginData = {
-        email: email,
-        password: password
-      };
-
-      console.log(loginData);*/
+ 
+  login(credentials:CredentialsDto) {
       console.log('Login function called');
-      
       // Make a POST request to the authentication endpoint
       this.authService.login(credentials)
       .subscribe({
@@ -58,7 +41,6 @@ export class LoginComponent implements OnInit{
         error: (error) => {
           // Handle login error
           console.error('Login failed:', error);
-      
           // Display error message using Toastr
           this.toastr.error('Invalid email or password', 'Login Failed');
         }

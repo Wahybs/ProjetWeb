@@ -77,8 +77,6 @@ import { ModifierPatientAdminComponent } from './patientAdmin/modifier-patient-a
   ItemPatientAdminComponent,
   ListPatientAdminComponent,
   ModifierPatientAdminComponent,
-
-
   ],
   imports: [
     FormsModule,

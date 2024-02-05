@@ -4,9 +4,9 @@ import { ConsultationEntity } from './entities/consultation.entity';
 import { CreateConsultationDto } from './dto/create-consultation.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UserEntity } from 'src/user/entities/user.entity';
-import { MedecinAdminGuard } from './guards/medecin-admin.guard';
-import { MedecinGuard } from './guards/medecin.guard';
-import { AdminGuard } from './guards/admin.guard';
+import { MedecinAdminGuard } from '../common-module/guards/medecin-admin.guard';
+import { MedecinGuard } from '../common-module/guards/medecin.guard';
+import { AdminGuard } from '../common-module/guards/admin.guard';
 import { UpdateConsultationDto } from './dto/update-consultation.dto';
 
 

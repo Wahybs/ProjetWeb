@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CommonModuleModule } from './common-module/common-module.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
@@ -13,10 +12,7 @@ import { PrescriptionEntity } from './prescription/entities/prescription.entity'
 import { ConsultationEntity } from './consultation/entities/consultation.entity';
 import { MedecinModule } from './medecin/medecin.module';
 import { MedecinEntity } from './medecin/entities/medecin.entity';
-import { RolesGuard } from './common-module/roles.guard';
 import { AuthModule } from './auth/auth.module';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
 import * as dotenv from 'dotenv';
 import { ConfigModule } from '@nestjs/config';
 
@@ -30,7 +26,7 @@ dotenv.config();
     ConfigModule.forRoot(
       {isGlobal:true}
     ),
-    CommonModuleModule,
+    
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
